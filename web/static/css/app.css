@@ -1,1 +1,15 @@
-/* This file is for your main application css. */
+@import "mdl.css";
+
+.mdl-layout__container {
+	top: 0;
+}
+
+.mdl-chip__info {
+	background-color: aliceblue;
+	border-radius: 0;
+}
+
+.mdl-chip__error {
+	background-color: lightcoral;
+	border-radius: 0;
+}
