@@ -19,7 +19,7 @@ defmodule YtComments.Mixfile do
   def application do
     [mod: {YtComments, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :uberauth, :uberauth_google]]
+                    :phoenix_ecto, :postgrex, :ueberauth, :ueberauth_google]]
   end
 
   # Specifies which paths to compile per environment.
