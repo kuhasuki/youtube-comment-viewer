@@ -8,9 +8,7 @@
     <meta name="author" content="">
 
     <title>Youtube Stream Comment App</title>
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
-    <link rel="stylesheet" href="<%= static_path(@conn, "/node_modules/material-design-lite/material.min.css") %>">
-    <script src="<%= static_path(@conn, "/node_modules/material-design-lite/material.min.js") %>"></script>
+    <link rel="stylesheet" href="<%= static_path(@conn, "/js/css/app.css") %>">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
 
@@ -18,50 +16,47 @@
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <!-- Title -->
-      <span class="mdl-layout-title">Title</span>
-      <!-- Add spacer, to align navigation to the right -->
+      <span class="mdl-layout-title">Youtube Live Stream Comment App</span>
       <div class="mdl-layout-spacer"></div>
-      <!-- Navigation. We hide it in small screens. -->
       <nav class="mdl-navigation mdl-layout--large-screen-only">
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
+        <%= if @conn.assigns[:user] do %>
+          <a class="mdl-navigation__link" href=""><%= @conn.assigns.user.first_name %></a>
+          <a class="mdl-navigation__link" href="">Streams</a>
+          <%= link "Sign out", to: auth_path(@conn, :delete), class: "mdl-navigation__link" %>
+        <% else %>
+          <%= link "Sign in with Google", to: auth_path(@conn, :request, "google", scope: "email profile"), class: "mdl-navigation__link" %>
+        <% end %>
       </nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title">Title</span>
+    <span class="mdl-layout-title">Comment App</span>
     <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
+      <%= if @conn.assigns[:user] do %>
+        <a class="mdl-navigation__link" href=""><%= @conn.assigns.user.first_name %></a>
+        <a class="mdl-navigation__link" href="">Streams</a>
+        <%= link "Sign out", to: auth_path(@conn, :delete), class: "mdl-navigation__link" %>
+      <% else %>
+        <%= link "Sign in with Google", to: auth_path(@conn, :request, "google", scope: "email profile"), class: "mdl-navigation__link" %>
+      <% end %>
     </nav>
   </div>
-  <main class="mdl-layout__content">
-    <div class="page-content"><!-- Your content goes here --></div>
+  <%= if get_flash(@conn, :info) do %>
+    <span class="mdl-chip mdl-chip__info">
+      <span class="mdl-chip__text" role="alert"><%= get_flash(@conn, :info) %></span>
+    </span>
+  <% end %>
+  <%= if get_flash(@conn, :error) do %>
+    <span class="mdl-chip mdl-chip__error">
+      <span class="mdl-chip__text" role="alert"><%= get_flash(@conn, :error) %></span>
+    </span>
+  <% end %>
+  <main role="main" class="mdl-layout__content">
+    <div class="page-content">
+      <%= render @view_module, @view_template, assigns %>
+    </div>
   </main>
 </div>
-    <div class="container">
-      <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-          </ul>
-        </nav>
-        <span class="logo"></span>
-      </header>
-
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-
-      <main role="main">
-        <%= render @view_module, @view_template, assigns %>
-      </main>
-
-    </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
