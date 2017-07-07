@@ -25,6 +25,8 @@ defmodule YtComments.ConnCase do
       import Ecto.Changeset
       import Ecto.Query
 
+      import YtComments.Factory
+
       import YtComments.Router.Helpers
 
       # The default endpoint for testing
