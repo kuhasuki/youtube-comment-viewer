@@ -19,7 +19,7 @@ defmodule YtComments.Mixfile do
   def application do
     [mod: {YtComments, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :ueberauth, :ueberauth_google, :ex_machina]]
+                    :phoenix_ecto, :postgrex, :ueberauth, :ueberauth_google, :ex_machina, :poison, :httpoison]]
   end
 
   # Specifies which paths to compile per environment.
@@ -40,7 +40,9 @@ defmodule YtComments.Mixfile do
      {:cowboy, "~> 1.0"},
      {:ueberauth, "~> 0.4"},
      {:ueberauth_google, "~> 0.5"},
-     {:ex_machina, "~> 2.0"}]
+     {:ex_machina, "~> 2.0"},
+     {:poison, "~> 3.0", override: true},
+     {:httpoison, "~> 0.11.1"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

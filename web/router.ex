@@ -18,6 +18,7 @@ defmodule YtComments.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/streams", StreamsController, :index
   end
 
   scope "/auth", YtComments do
@@ -29,7 +30,9 @@ defmodule YtComments.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", YtComments do
-  #   pipe_through :api
-  # end
+  scope "/api", YtComments do
+    pipe_through :api
+
+    resources "/test", ApiController, only: [:index]
+  end
 end
