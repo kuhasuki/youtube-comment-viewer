@@ -21,7 +21,7 @@
       <nav class="mdl-navigation mdl-layout--large-screen-only">
         <%= if @conn.assigns[:user] do %>
           <a class="mdl-navigation__link" href=""><%= @conn.assigns.user.first_name %></a>
-          <a class="mdl-navigation__link" href="">Streams</a>
+          <a class="mdl-navigation__link" href="/streams">Streams</a>
           <%= link "Sign out", to: auth_path(@conn, :delete), class: "mdl-navigation__link" %>
         <% else %>
           <%= link "Sign in with Google", to: auth_path(@conn, :request, "google", scope: "email profile"), class: "mdl-navigation__link" %>
@@ -34,7 +34,7 @@
     <nav class="mdl-navigation">
       <%= if @conn.assigns[:user] do %>
         <a class="mdl-navigation__link" href=""><%= @conn.assigns.user.first_name %></a>
-        <a class="mdl-navigation__link" href="">Streams</a>
+        <a class="mdl-navigation__link" href="/streams">Streams</a>
         <%= link "Sign out", to: auth_path(@conn, :delete), class: "mdl-navigation__link" %>
       <% else %>
         <%= link "Sign in with Google", to: auth_path(@conn, :request, "google", scope: "email profile"), class: "mdl-navigation__link" %>

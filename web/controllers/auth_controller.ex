@@ -17,7 +17,7 @@ defmodule YtComments.AuthController do
         conn
         |> put_flash(:info, "Thank you for signing in!")
         |> put_session(:user_id, user.id)
-        |> redirect(to: "/")
+        |> redirect(to: "/streams")
       {:error, _reason} ->
         conn
         |> put_flash(:error, "Error signing in")
