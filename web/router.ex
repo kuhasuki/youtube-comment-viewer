@@ -34,5 +34,6 @@ defmodule YtComments.Router do
     pipe_through :api
 
     resources "/test", ApiController, only: [:index]
+    resources "/streams", ApiController, only: [:index]
   end
 end
