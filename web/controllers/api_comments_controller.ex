@@ -9,7 +9,8 @@ defmodule YtComments.ApiCommentsController do
     if Map.has_key?(hd(stream_data.items).liveStreamingDetails, :activeLiveChatId) do
       chat_id = hd(stream_data.items).liveStreamingDetails.activeLiveChatId
       initial_chat_json = HTTPoison.get! "https://www.googleapis.com/youtube/v3/liveChat/messages?liveChatId=#{chat_id}&part=id,snippet,authorDetails&key=#{System.get_env("YOUTUBE_API_KEY")}"
-      render(conn, "comments.json", comments: Poison.decode!(initial_chat_json.body, keys: :atoms))
+      
+      render(conn, "comments.json", comments: Map.put(Poison.decode!(initial_chat_json.body, keys: :atoms), :liveChatId, chat_id))
     else 
       render(conn, "comments.json", comments: %{"error" => "This stream has disabled live chat"})
     end  
