@@ -5,24 +5,26 @@ import AppState from './AppState';
 import App from './App';
 import '../material.min.js'
 
-const appState = new AppState();
 
-render(
-  <AppContainer>
-    <App appState={appState} />
-  </AppContainer>,
-  document.getElementById('root')
-);
+if (window.location.pathname === '/streams') {
+  const appState = new AppState();
+  render(
+    <AppContainer>
+      <App appState={appState} />
+    </AppContainer>,
+    document.getElementById('root')
+  );
 
-if (module.hot) {
-  module.hot.accept('./App', () => {
-    const NextApp = require('./App').default;
+  if (module.hot) {
+    module.hot.accept('./App', () => {
+      const NextApp = require('./App').default;
 
-    render(
-      <AppContainer>
-        <NextApp appState={appState} />
-      </AppContainer>,
-      document.getElementById('root')
-    );
-  });
+      render(
+        <AppContainer>
+          <NextApp appState={appState} />
+        </AppContainer>,
+        document.getElementById('root')
+      );
+    });
+  }
 }
