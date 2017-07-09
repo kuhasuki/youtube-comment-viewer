@@ -7,7 +7,7 @@ module.exports = {
   "./web/static/css/app.css", "./web/static/js/frontend/index.jsx"],
   output: {
     path: path.resolve(__dirname, "priv/static/js"),
-    filename: "app.js"
+    filename: "bundle.js"
   },
   resolve: {
     modules: [ "node_modules", __dirname + "/web/static/js" ],
