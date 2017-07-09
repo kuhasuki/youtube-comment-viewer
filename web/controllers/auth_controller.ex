@@ -15,7 +15,6 @@ defmodule YtComments.AuthController do
     case insert_or_update_user(changeset) do
       {:ok, user} ->
         conn
-        |> put_flash(:info, "Thank you for signing in!")
         |> put_session(:user_id, user.id)
         |> redirect(to: "/streams")
       {:error, _reason} ->
