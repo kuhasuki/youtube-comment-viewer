@@ -54,6 +54,10 @@ class AppState {
       	} else {
       	 this.stopUpdatingComments = true
       	}
+      } else {
+        this.commentView = false
+        this.isLoadingComments = false
+        this.stopUpdatingComments = true
       }
     });
   }
